@@ -234,7 +234,7 @@ def remove_user():
 
 def run_app():
     db.create_all()
-    app.run()
+    app.run(port=80)
 
 if __name__ == "__main__":
     run_app()
