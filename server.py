@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 from face_recognition import FaceRecognition
 import hashlib
-from config import DevelopmentConfig
+from config import ProductionConfig
 from utils import *
 from models import get_models
 import os
@@ -13,7 +13,7 @@ import os
 app = Flask(__name__)
 
 
-app.config.from_object(DevelopmentConfig())
+app.config.from_object(ProductionConfig())
 
 db = SQLAlchemy(app)
 
@@ -239,5 +239,5 @@ def run_app():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port)
 
