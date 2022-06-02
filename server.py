@@ -208,7 +208,6 @@ def set_session_model():
 
             return(redirect(url_for("model_inference")))
         return(redirect(url_for("mif")))
-        
     return(redirect(url_for("mif")))
 
 
@@ -219,9 +218,7 @@ def remove_model():
         model = jmods.query.filter_by(created_by=session['username'], mname=name).first()
         db.session.delete(model)
         db.session.commit()
-
         return(redirect(url_for("model_dashboard")))
-
     return(redirect(url_for("model_dashboard")))
 
 @app.route("/remove-user", methods=["GET", "POST"])
@@ -240,4 +237,3 @@ def run_app():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
-
