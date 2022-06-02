@@ -7,6 +7,7 @@ import hashlib
 from config import DevelopmentConfig
 from utils import *
 from models import get_models
+import os
 
 
 app = Flask(__name__)
@@ -237,4 +238,6 @@ def run_app():
     app.run(port=80)
 
 if __name__ == "__main__":
-    run_app()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
+
