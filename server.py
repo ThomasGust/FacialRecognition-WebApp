@@ -10,7 +10,7 @@ from models import get_models
 import os
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 
 app.config.from_object(ProductionConfig())
