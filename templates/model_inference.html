@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block tcontent%}SAASGo | Model Inference{%endblock%}
+{% block content%}
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <!-- Example single danger button -->
+        <h1>Model Inference</h1>
+        <form method="post" action="/model-inference">
+            <input class="btn btn-primary" type="submit" value="Stop" >
+        </form>
+        <div id="vstream_div">
+            <img src="{{ url_for('video') }}" width="50%">
+        </div>
+    </div>
+</div>
+{%endblock%}

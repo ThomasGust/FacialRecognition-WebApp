@@ -1,0 +1,23 @@
+a:hover{
+    background-color:#aaa;
+    color:white;
+}
+a:active{
+    background-color:#000;
+    color:white;
+}
+div.a {  
+word-wrap: normal;  
+}  
+div.b {  
+word-wrap: break-word;  
+}  
+
+h2.shadow {
+    text-shadow: 2px 2px #808080;
+  }
+
+h1.shadow {
+    text-shadow: 2px 3px #808080;
+  }
+  

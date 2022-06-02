@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block tcontent%} SAASGo | Model Inference{%endblock%}
+{% block content %}
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <h1>Model Inference</h1>
+            <div class="form-floating">
+                <form method="POST" action="/set-session-model">
+                <div>
+                <select class="form-select" aria-label="Default select example" name="model-select">
+                    {% for model in models%}
+                    <option value="{{ model.mname }}">{{ model.mname }}</option>
+                    {% endfor %}
+                  </select>
+                <label for="floatingSelect">Model Selector</label>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Start" >
+                </form>
+            </div>
+        <form method="post" action="/model-inference-live">
+        </form>
+    </div>
+</div>
+{%endblock%}

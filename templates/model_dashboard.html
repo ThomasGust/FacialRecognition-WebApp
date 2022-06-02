@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block tcontent%}SAASGo | Model Dashboard{%endblock%}
+{% block content%}
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <h1>Model Dashboard</h1>
+        <form action="{{ url_for('add_model') }}" method="POST" enctype="multipart/form-data" class="d-flex" name="json-upload">
+            <div id="c-form-group">
+                <div id="m-name-upload-form-group">
+                    <input type="text" id="mname" class="form-control" name="mname" placeholder="Name of Model" color="ffffff">
+                </div>
+                <div id="model-distance-threshold-form-group">
+                    <input type="text" id="mdt" class="form-control" name="mdt" placeholder="Model Detection Threshhold" color="ffffff">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="images" multiple>
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                  </div>
+                <div id="add-model-submit-form-group">
+                    <input type="submit" value="Add Model" name="submit-button" class="btn btn-primary"> 
+                </div>
+            </div> 
+        </form>
+        <form method="POST" action="{{ url_for('remove_model') }}">
+            <table class="table table-striped">
+                <tr>
+                <th>Name</th>
+                <th>DS Size</th>
+                <th>Face Detection Threshhold</th>
+                </tr>
+                {% for m in models %}
+                <tr>
+                <th>{{ m.mname }}</th>
+                <th>{{ m.mlen }}</th>
+                <th>{{ m.mdt }}</th>
+                <th>
+                    <button type="submit" name="{{ m.mname }}" class='btn btn-danger'>-</button>
+                </th>
+                </tr>
+                {% endfor %}
+            </table>
+          </form
+    </div>
+</div>
+{%endblock%}
