@@ -1,13 +1,13 @@
+import cv2
+import os
 from flask import Flask, render_template, Response, request, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-import cv2
 import numpy as np
 from face_recognition import FaceRecognition
 import hashlib
 from config import ProductionConfig
 from utils import *
 from models import get_models
-import os
 
 
 app = Flask(__name__, template_folder="templates")
