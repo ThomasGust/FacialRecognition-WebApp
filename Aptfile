@@ -1,1 +1,9 @@
-python-opencv
+libsm6
+libxrender1
+libfontconfig1
+libice6
+libpng-dev
+libjpeg-dev
+libopenexr-dev
+libtiff-dev
+libwebp-dev
