@@ -7,3 +7,4 @@ libjpeg-dev
 libopenexr-dev
 libtiff-dev
 libwebp-dev
+libgl1
