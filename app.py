@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, Response, request, session, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import numpy as np
-from face_recognition import FaceRecognition
+from face_recognition import FRV
 import hashlib
 from config import ProductionConfig
 from utils import *
@@ -72,7 +72,7 @@ def add_model():
             
             mname = d['mname']
             mdt = d['mdt']
-            fr = FaceRecognition()
+            fr = FRV()
             jsondata = fr.batch_register_face_web(imgs, key=fr.get_rand_string(length=100))
 
             
