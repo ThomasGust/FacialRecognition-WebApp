@@ -1,6 +1,5 @@
 import os
 import sys
-from tkinter import E
 from typing import List, Dict, Tuple
 import uuid
 
