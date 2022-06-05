@@ -231,4 +231,5 @@ def remove_user():
     return redirect(url_for("index"))
 
 db.create_all()
-app.run()
+port = int(os.environ.get("PORT", 3000))
+app.run(port=port)
