@@ -230,6 +230,6 @@ def remove_user():
         return(redirect(url_for("sign_up")))
     return redirect(url_for("index"))
 
-db.create_all()
-port = int(os.environ.get("PORT", 3000))
-app.run(port=port)
+if __name__ == "__main__":
+    db.create_all()
+    app.run()
