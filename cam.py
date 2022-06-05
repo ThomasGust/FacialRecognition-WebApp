@@ -1,7 +1,7 @@
 import threading
 import binascii
 from time import sleep
-from utils import base64_to_pil_image, pil_image_to_base64
+from utils import base64_to_cv2_image
 import cv2
 from face_recognition import OnWebFaceRecognition, draw_annotation
 import numpy as np
@@ -45,7 +45,7 @@ class Camera(object):
         if not self.to_process:
             return
         input_str = self.to_process.pop(0)
-        input_img = base64_to_pil_image(input_str)
+        input_img = base64_to_cv2_image(input_str)
         output_str = self.filter.apply_filter(input_img)
         self.to_output.append(binascii.a2b_base64(output_str))
 
