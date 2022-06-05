@@ -26,10 +26,14 @@ jmods, users = get_models(db=db)
 @socketio.on('input image', namespace='/v-stream')
 def test_message(input):
     input = input.split(",")[1]
-    print(input)
-    camera = Camera(Annotator())
+    with app.app_context():
+        umodi = session['umodi']
+        model = db.query.get(umodi).first()
+        mjson = model.model
+        mdt = model.mdt
+    camera = Camera(Annotator(mjson=mjson, mdt=mdt))
     camera.enqueue_input(input)
-    image_data = input
+    image_data = camera.filter.apply_filter(base64_to_cv2_image(input))
     img = imread(io.BytesIO(base64.b64decode(image_data)))
     cv2_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     cv2.imwrite("reconstructed.jpg", cv2_img)
