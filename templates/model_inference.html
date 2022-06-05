@@ -8,9 +8,17 @@
         <form method="post" action="/model-inference">
             <input class="btn btn-primary" type="submit" value="Stop" >
         </form>
-        <div id="vstream_div">
-            <img src="{{ url_for('video') }}" width="50%">
+        <div id="container">
+            <div>
+            <video autoplay="true" id="videoElement"></video>
+                <canvas id="canvasElement"></canvas>
+
+                <img id="photo">
+            </div>
         </div>
     </div>
 </div>
 {%endblock%}
+{% block ejsimports %}
+<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+{% endblock %}

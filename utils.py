@@ -1,6 +1,10 @@
 import cv2
 from face_recognition import OnWebFaceRecognition, draw_annotation
 import numpy as np
+from PIL import Image
+from io import BytesIO
+import base64
+
 
 def generate_frames(mjson, mdt):
     camera = cv2.VideoCapture(0)
@@ -42,3 +46,12 @@ def get_f_name(filename):
     else:
         name = filename.split(".")[0]
     return name
+
+def pil_image_to_base64(pil_image):
+    buf = BytesIO()
+    pil_image.save(buf, format="JPEG")
+    return base64.b64encode(buf.getvalue())
+
+
+def base64_to_pil_image(base64_img):
+    return Image.open(BytesIO(base64.b64decode(base64_img)))
