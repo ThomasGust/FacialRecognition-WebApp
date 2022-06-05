@@ -17,9 +17,10 @@ $(document).ready(function(){
       socket.emit('output image')
       var img = new Image();
       socket.on('out-image-event',function(data){
-      img.src = dataURL
-      photo.setAttribute('src', data.image_data);
-      });
+        img.src = dataURL
+        photo.setAttribute('src', data.image_data);
+      }
+      );
     }
     
     socket.on('connect', function() {

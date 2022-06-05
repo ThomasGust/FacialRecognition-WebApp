@@ -43,7 +43,7 @@ def test_message(input):
     image_data = "data:image/jpeg;base64," + b
 
     print("OUTPUT " + image_data)
-    emit('out-image-event', {'image_data': image_data}, namespace='/test')
+    emit('out-image-event', {'image_data': image_data}, namespace='/v-stream')
 
 @app.route("/")
 @app.route("/home")
