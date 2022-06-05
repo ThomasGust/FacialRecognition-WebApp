@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 socketio = SocketIO(app)
 jmods, users = get_models(db=db)
 
-
+"""
 @socketio.on('input image', namespace='/v-stream')
 def test_message(input):
     input = input.split(",")[1]
@@ -44,6 +44,7 @@ def test_message(input):
 
     print("OUTPUT " + image_data)
     emit('out-image-event', {'image_data': image_data}, namespace='/v-stream')
+"""
 
 @app.route("/")
 @app.route("/home")
