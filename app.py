@@ -26,6 +26,7 @@ jmods, users = get_models(db=db)
 @socketio.on('input image', namespace='/v-stream')
 def test_message(input):
     input = input.split(",")[1]
+    print(input)
     camera = Camera(Annotator())
     camera.enqueue_input(input)
     image_data = input

@@ -6,7 +6,7 @@ $(document).ready(function(){
     photo = document.getElementById('photo');
     var localMediaStream = null;
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-    /*
+    
     function sendSnapshot() {
       if (!localMediaStream) {
         return;
@@ -21,7 +21,7 @@ $(document).ready(function(){
       photo.setAttribute('src', data.image_data);
       });
     }
-    */
+    
     socket.on('connect', function() {
       console.log('Connected!');
     });
