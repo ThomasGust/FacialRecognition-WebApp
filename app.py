@@ -11,6 +11,7 @@ from models import get_models
 import base64
 import io
 from flask_socketio import SocketIO, emit
+from cam import Annotator, Camera
 from imageio import imread
 import socket
 import threading
@@ -22,26 +23,22 @@ socketio = SocketIO(app)
 jmods, users = get_models(db=db)
 
 
-@socketio.on('input image', namespace='/test')
+@socketio.on('input image', namespace='/v-stream')
 def test_message(input):
     input = input.split(",")[1]
+    camera = Camera(Annotator())
     camera.enqueue_input(input)
-    image_data = input # Do your magical Image processing here!!
-    #image_data = image_data.decode("utf-8")
-
+    image_data = input
     img = imread(io.BytesIO(base64.b64decode(image_data)))
     cv2_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     cv2.imwrite("reconstructed.jpg", cv2_img)
-    retval, buffer = cv2.imencode('.jpg', cv2_img)
+    _, buffer = cv2.imencode('.jpg', cv2_img)
     b = base64.b64encode(buffer)
     b = b.decode()
     image_data = "data:image/jpeg;base64," + b
 
     print("OUTPUT " + image_data)
     emit('out-image-event', {'image_data': image_data}, namespace='/test')
-
-def frame_generator(mjson, mdt):
-    pass
 
 @app.route("/")
 @app.route("/home")
@@ -228,7 +225,6 @@ def set_session_model():
 
         if model:
             session['umodi'] = model._id
-
             return(redirect(url_for("model_inference")))
         return(redirect(url_for("mif")))
     return(redirect(url_for("mif")))
@@ -252,6 +248,21 @@ def remove_user():
         db.session.commit()
         return(redirect(url_for("sign_up")))
     return redirect(url_for("index"))
+
+def gen_frames(mjson, mdt):
+    camera = Camera(Annotator(mjson=mjson, mdt=mdt))
+    while True:
+        frame = camera.get_frame()
+
+        print(type(frame))
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/video_feed')
+def video_feed():
+    model = jmods.query.get(session['umodi']).first()
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
     db.create_all()

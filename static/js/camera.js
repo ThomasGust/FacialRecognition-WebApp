@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    let namespace = "/test";
+    let namespace = "/v-stream";
     let video = document.querySelector("#videoElement");
     let canvas = document.querySelector("#canvasElement");
     let ctx = canvas.getContext('2d');
@@ -16,7 +16,7 @@ $(document).ready(function(){
       socket.emit('output image')
       var img = new Image();
       socket.on('out-image-event',function(data){
-      img.src = dataURL//data.image_data
+      img.src = dataURL
       photo.setAttribute('src', data.image_data);
       });
     }

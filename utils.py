@@ -3,6 +3,8 @@ from face_recognition import OnWebFaceRecognition, draw_annotation
 import numpy as np
 from PIL import Image
 from io import BytesIO
+import io
+from imageio import imread
 import base64
 
 
@@ -47,11 +49,5 @@ def get_f_name(filename):
         name = filename.split(".")[0]
     return name
 
-def pil_image_to_base64(pil_image):
-    buf = BytesIO()
-    pil_image.save(buf, format="JPEG")
-    return base64.b64encode(buf.getvalue())
-
-
-def base64_to_pil_image(base64_img):
-    return Image.open(BytesIO(base64.b64decode(base64_img)))
+def base64_to_cv2_image(base64_img):
+    return cv2.cvtColor(imread(io.BytesIO(base64.b64decode(base64_img))), cv2.COLOR_RGB2BGR)

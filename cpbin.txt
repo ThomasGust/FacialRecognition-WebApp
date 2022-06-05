@@ -1,3 +1,0 @@
-        <! --- <div id="vstream_div">
-            <img src="{{ url_for('video') }}" width="50%">
-        </div> --- >
