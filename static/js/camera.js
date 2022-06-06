@@ -7,7 +7,7 @@ $(document).ready(function(){
     var localMediaStream = null;
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
     
-    /*
+    
     function sendSnapshot() {
       if (!localMediaStream) {
         return;
@@ -23,7 +23,7 @@ $(document).ready(function(){
       }
       );
     }
-    */
+    
     
     socket.on('connect', function() {
       console.log('Connected!');
@@ -38,7 +38,7 @@ $(document).ready(function(){
       video.srcObject = stream;
       localMediaStream = stream;
       setInterval(function () {
-        console.log("TESting!!!!!!");
+        sendSnapshot();
       }, 50);
     }).catch(function(error) {
       console.log(error);
