@@ -23,8 +23,9 @@ socketio = SocketIO(app)
 jmods, users = get_models(db=db)
 
 
-@socketio.on('input image', namespace='/v-stream')
+@socketio.on('input-image')
 def test_message(input):
+    """
     input = input.split(",")[1]
     with app.app_context():
         umodi = session['umodi']
@@ -44,6 +45,10 @@ def test_message(input):
 
     print("OUTPUT " + image_data)
     emit('out-image-event', {'image_data': image_data}, namespace='/v-stream')
+    """
+    print("IMAGE RECIEVED")
+    emit('out-image-event', {'image_data': input})
+
 
 
 @app.route("/")

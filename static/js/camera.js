@@ -1,11 +1,11 @@
 $(document).ready(function(){
-    let namespace = "/v-stream";
+    //let namespace = "/v-stream";
     let video = document.querySelector("#videoElement");
     let canvas = document.querySelector("#canvasElement");
     let ctx = canvas.getContext('2d');
     photo = document.getElementById('photo');
     var localMediaStream = null;
-    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
     
     
     function sendSnapshot() {
@@ -14,7 +14,8 @@ $(document).ready(function(){
       }
       ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
       let dataURL = canvas.toDataURL('image/jpeg');
-      socket.emit('input image', dataURL);
+      socket.emit('input-image', dataURL);
+      console.log("IMAGE HAS BEEN EMITTED")
       socket.emit('output image')
       var img = new Image();
       socket.on('out-image-event',function(data){
