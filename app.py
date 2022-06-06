@@ -47,7 +47,7 @@ def test_message(input):
 """
 @socketio.on("input image", namespace='/v-stream')
 def test(input):
-    print("input_recieved!")
+    emit('out-image-event', {'image_data': input}, namespace='/v-stream')
 
 @app.route("/")
 @app.route("/home")
