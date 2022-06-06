@@ -38,7 +38,7 @@ $(document).ready(function(){
       video.srcObject = stream;
       localMediaStream = stream;
       setInterval(function () {
-        sendSnapshot();
+        console.log("TESting!!!!!!");
       }, 50);
     }).catch(function(error) {
       console.log(error);
