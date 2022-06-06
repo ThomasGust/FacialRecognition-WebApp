@@ -268,7 +268,7 @@ def gen_frames(mjson, mdt):
 @app.route('/video_feed')
 def video_feed():
     model = jmods.query.get(session['umodi']).first()
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen_frames(model.model, model.mdt), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == "__main__":
     db.create_all()
