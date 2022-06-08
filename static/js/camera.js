@@ -31,7 +31,7 @@ $(document).ready(function(){
     var constraints = {
       video: {
         width: { min: 640 },
-        height: { min: 480 }
+        height: { min: 640 }
       }
     };
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
