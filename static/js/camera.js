@@ -17,8 +17,6 @@ $(document).ready(function(){
       let dataURL = canvas.toDataURL('image/jpeg');
       socket.emit('input-image', dataURL);
       console.log("IMAGE HAS BEEN EMITTED")
-      socket.emit('output image')
-      //var img = new Image();
 
       socket.on('out-image-event',function(data){
         console.log("Image has been recieved")
@@ -40,7 +38,7 @@ $(document).ready(function(){
       localMediaStream = stream;
       setInterval(function () {
         sendSnapshot();
-      }, 5000);
+      }, 50);
     }).catch(function(error) {
       console.log(error);
     });
