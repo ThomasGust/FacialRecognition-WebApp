@@ -1,11 +1,12 @@
 $(document).ready(function(){
-    //let namespace = "/v-stream";
+    /*let namespace = "/v-stream";
     let video = document.querySelector("#videoElement");
     let canvas = document.querySelector("#canvasElement");
     let ctx = canvas.getContext('2d');
     photo = document.getElementById('photo');
     var localMediaStream = null;
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    */
     
     
     function sendSnapshot() {
@@ -24,8 +25,6 @@ $(document).ready(function(){
       }
       );
     }
-    
-    
     socket.on('connect', function() {
       console.log('Connected!');
     });
