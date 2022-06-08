@@ -29,7 +29,7 @@ def test_message(input):
     input = input.split(",")[1]
     with app.app_context():
         umodi = session['umodi']
-        model = jmods.query.get(umodi).first()
+        model = jmods.query.get(umodi)
         mjson = model.model
         mdt = model.mdt
     print("SUCCESFULLY LOADED CONTEXT")
