@@ -19,8 +19,7 @@ $(document).ready(function(){
       console.log("IMAGE HAS BEEN EMITTED")
 
       socket.on('out-image-event',function(data){
-        console.log("Image has been recieved")
-        console.log(data.image_data)
+        console.log("Image has been recieved");
         photo.setAttribute('src', data.image_data);
       }
       );
@@ -39,7 +38,7 @@ $(document).ready(function(){
       localMediaStream = stream;
       setInterval(function () {
         sendSnapshot();
-      }, 5000);
+      }, 50);
     }).catch(function(error) {
       console.log(error);
     });
