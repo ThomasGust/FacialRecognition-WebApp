@@ -27,7 +27,7 @@ class Annotator:
                 draw_annotation(frame, name, int(1 / 0.5) * np.array(face_bbox))
             _, buffer = cv2.imencode(".jpg", frame)
             return base64.b64encode(buffer)
-        return frame
+        return base64.b64encode(frame)
 
 class Camera(object):
     def __init__(self, f=Annotator()):
