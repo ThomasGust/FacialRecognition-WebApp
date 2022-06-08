@@ -21,7 +21,7 @@ class Annotator:
                 matches = fr.recognize_faces(
                     image=smaller_frame, threshold=0.6, bboxes=None
                 )
-                for face_bbox, match, _ in matches:
+                for face_bbox, match, useless in matches:
                     name = match["name"] if match is not None else "Unknown"
                     draw_annotation(frame, name, int(1 / 0.5) * np.array(face_bbox))
 
