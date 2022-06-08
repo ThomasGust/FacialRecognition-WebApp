@@ -1,1 +1,1 @@
-web: gunicorn -k eventlet -w 1 app:app
+web: gunicorn -k eventlet -w 1 --limit-request-line 0 app:app
