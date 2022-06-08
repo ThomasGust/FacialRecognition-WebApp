@@ -20,6 +20,7 @@ $(document).ready(function(){
 
       socket.on('out-image-event',function(data){
         console.log("Image has been recieved")
+        console.log(data.image_data)
         photo.setAttribute('src', data.image_data);
       }
       );
