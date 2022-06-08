@@ -40,6 +40,8 @@ def test_message(input):
     print("SPLIT INPUT")
     image_data = camera.filter.apply_filter(base64_to_cv2_image(input))
     img = base64.b64decode(image_data)
+    buf_arr = np.fromstring(img, dtype=np.uint8)
+    img = cv2.imdecode(buf_arr, cv2.IMREAD_UNCHANGED)
     cv2_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     _, buffer = cv2.imencode('.jpg', cv2_img)
     b = base64.b64encode(buffer)
