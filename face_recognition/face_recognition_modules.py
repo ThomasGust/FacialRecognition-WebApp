@@ -247,7 +247,7 @@ class OnWebFaceRecognition:
         if bboxes is None:
             bboxes = self.face_detector.detect_faces(image=image)
         if len(bboxes) == 0:
-            return image
+            return None
         matches = []
         for bbox in bboxes:
             face_encoding = self.get_facial_fingerprint(image, bbox)
