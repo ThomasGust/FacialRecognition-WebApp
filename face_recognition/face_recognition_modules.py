@@ -141,7 +141,7 @@ class FaceRecognition:
         if bboxes is None:
             bboxes = self.face_detector.detect_faces(image=image)
         if len(bboxes) == 0:
-            raise image
+            return image
         all_facial_data = self.datastore.get_all_facial_data()
         matches = []
         for bbox in bboxes:
@@ -247,7 +247,7 @@ class OnWebFaceRecognition:
         if bboxes is None:
             bboxes = self.face_detector.detect_faces(image=image)
         if len(bboxes) == 0:
-            raise NoFaceDetected
+            return image
         matches = []
         for bbox in bboxes:
             face_encoding = self.get_facial_fingerprint(image, bbox)
