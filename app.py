@@ -26,7 +26,7 @@ jmods, users = get_models(db=db)
 @socketio.on('input-image')
 def test_message(input):
     
-    input = input.split(",")[1]
+    #input = input.split(",")[1]
     with app.app_context():
         umodi = session['umodi']
         model = jmods.query.get(umodi)
