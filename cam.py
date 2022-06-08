@@ -17,17 +17,12 @@ class Annotator:
         if self.mjson != None and self.mdt != None:
             fr = OnWebFaceRecognition(json_data=self.mjson, face_detection_threshold=self.mdt)
             smaller_frame = cv2.cvtColor(cv2.resize(frame, (0, 0), fx=0.5, fy=0.5), cv2.COLOR_BGR2RGB)
-            try:
-                matches = fr.recognize_faces(
-                    image=smaller_frame, threshold=0.6, bboxes=None
-                )
-                for m in matches:
-                    face_bbox, match, min_dist = m
-                    name = match["name"] if match is not None else "Unknown"
-                    draw_annotation(frame, name, int(1 / 0.5) * np.array(face_bbox))
-
-            except Exception as e:
-                raise e
+            matches = fr.recognize_faces(
+                image=smaller_frame, threshold=0.6, bboxes=None
+            )
+            for (face_bbox, match, min_dist) in matches:
+                name = match["name"] if match is not None else "Unknown"
+                draw_annotation(frame, name, int(1 / 0.5) * np.array(face_bbox))
             _, buffer = cv2.imencode(".jpg", frame)
             return base64.b64encode(buffer)
         return frame
