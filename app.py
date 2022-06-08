@@ -33,13 +33,14 @@ def test_message(input):
         mjson = model.model
         mdt = model.mdt
     print("SUCCESFULLY LOADED CONTEXT")
-    """
+    
     camera = Camera(Annotator(mjson=mjson, mdt=mdt))
-    camera.enqueue_input(input)
+    print("LOADED CAMERA")
+    input = input.split(",")[1]
+    print("SPLIT INPUT")
     image_data = camera.filter.apply_filter(base64_to_cv2_image(input))
     img = imread(io.BytesIO(base64.b64decode(image_data)))
     cv2_img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    cv2.imwrite("reconstructed.jpg", cv2_img)
     _, buffer = cv2.imencode('.jpg', cv2_img)
     b = base64.b64encode(buffer)
     b = b.decode()
@@ -47,7 +48,6 @@ def test_message(input):
 
     print("OUTPUT " + image_data)
     emit('out-image-event', {'image_data': image_data}, namespace='/v-stream')
-    """
     print("IMAGE RECIEVED")
     emit('out-image-event', {'image_data': input})
 
