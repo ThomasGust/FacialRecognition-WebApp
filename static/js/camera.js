@@ -13,7 +13,7 @@ $(document).ready(function(){
       if (!localMediaStream) {
         return;
       }
-      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
+      ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 300);
       let dataURL = canvas.toDataURL('image/jpeg');
       socket.emit('input-image', dataURL);
       console.log("IMAGE HAS BEEN EMITTED")
@@ -23,6 +23,7 @@ $(document).ready(function(){
         photo.setAttribute('src', data.image_data);
       }
       );
+
     }
     socket.on('connect', function() {
       console.log('Connected!');

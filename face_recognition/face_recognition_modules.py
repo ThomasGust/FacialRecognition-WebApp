@@ -141,7 +141,7 @@ class FaceRecognition:
         if bboxes is None:
             bboxes = self.face_detector.detect_faces(image=image)
         if len(bboxes) == 0:
-            raise NoFaceDetected
+            raise image
         all_facial_data = self.datastore.get_all_facial_data()
         matches = []
         for bbox in bboxes:
