@@ -19,7 +19,9 @@ $(document).ready(function(){
       console.log("IMAGE HAS BEEN EMITTED")
       socket.emit('output image')
       var img = new Image();
+
       socket.on('out-image-event',function(data){
+        console.log("Image has been recieved")
         img.src = dataURL
         photo.setAttribute('src', data.image_data);
       }
