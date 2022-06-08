@@ -39,7 +39,7 @@ $(document).ready(function(){
       localMediaStream = stream;
       setInterval(function () {
         sendSnapshot();
-      }, 50);
+      }, 5000);
     }).catch(function(error) {
       console.log(error);
     });
