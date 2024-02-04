@@ -15,6 +15,9 @@ from cam import Annotator, Camera
 from imageio import imread
 import socket
 import threading
+from utils import generate_frames
+import sys
+from pyngrok import ngrok
 
 app = Flask(__name__, template_folder="templates")
 app.config.from_object(ProductionConfig())
@@ -279,6 +282,7 @@ def video_feed():
     model = jmods.query.get(session['umodi']).first()
     return Response(gen_frames(model.model, model.mdt), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+
 if __name__ == "__main__":
     db.create_all()
-    socketio.run(app)
+    app.run(port=80)

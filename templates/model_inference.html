@@ -9,16 +9,8 @@
             <input class="btn btn-primary" type="submit" value="Stop" >
         </form>
         <div id="container">
-            <div>
-            <video autoplay="true" id="videoElement"></video>
-                <canvas id="canvasElement"></canvas>
-
-                <img id="photo" src="{{ url_for("video_feed") }}">
-            </div>
+            <img src="{{ url_for('video') }}">
         </div>
     </div>
 </div>
 {%endblock%}
-{% block ejsimports %}
-<script src="{{ url_for('static', filename='js/camera.js') }}"></script>
-{% endblock %}
